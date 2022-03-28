@@ -13,4 +13,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
+
+    public void Login(View view) {
+        startActivity(new Intent(this, MenuActivity.class));
+    }
+
+    public void goRegister(View view) {
+        startActivity(new Intent(this, RegisterActivity.class));
+    }
 }
