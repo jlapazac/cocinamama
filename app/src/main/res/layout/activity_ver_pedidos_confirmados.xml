@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerPedidosConfirmados">
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:text="13/03/22  12:30pm  *Yape"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton20" />
+
+    <RadioButton
+        android:id="@+id/radioButton23"
+        android:layout_width="172dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
+        android:text="Pedido No. 827628"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+    <TextView
+        android:id="@+id/textView56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:text="19/02/22  17:30pm  *BCP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton21" />
+
+    <RadioButton
+        android:id="@+id/radioButton21"
+        android:layout_width="167dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="64dp"
+        android:textStyle="bold"
+        android:text="Pedido No. 826782"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView55" />
+
+    <TextView
+        android:id="@+id/textView57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:text="11/03/22  14:30pm  *BCP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton22" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:text="23/02/22  9:15am  *Yape"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton23" />
+
+    <RadioButton
+        android:id="@+id/radioButton22"
+        android:layout_width="160dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:text="Pedido No. 828198"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+    <RadioButton
+        android:id="@+id/radioButton20"
+        android:layout_width="169dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="92dp"
+        android:textStyle="bold"
+        android:text="Pedido No. 828209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="84dp"
+        android:textStyle="bold"
+        android:text="Mis Pedidos"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="verpedidospendientes"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="32dp"
+        android:textStyle="bold"
+        android:text="Pendientes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="84dp"
+        android:textStyle="bold"
+        android:text="Confirmados"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

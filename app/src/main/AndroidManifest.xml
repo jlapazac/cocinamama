@@ -10,7 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaMama">
         <activity
-            android:name=".MainActivity"
+            android:name=".VerDetalledePedido"
+            android:exported="false" />
+        <activity
+            android:name=".VerPedidosConfirmados"
+            android:exported="false" />
+        <activity
+            android:name=".VerPedidosPendientes"
+            android:exported="false" />
+        <activity
+            android:name=".VerPedidosC"
+            android:exported="false" />
+        <activity
+            android:name=".VerPedidos"
+            android:exported="false" />
+        <activity
+            android:name=".ConfirmacionPedido"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarPedido"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,6 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
