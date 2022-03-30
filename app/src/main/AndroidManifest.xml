@@ -28,9 +28,6 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
