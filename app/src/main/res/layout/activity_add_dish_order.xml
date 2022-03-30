@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddDishOrderActivity">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Carapulcra y Sopa Seca"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="366dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="20dp"
+        android:text="La especialidad de la casa. Carapulcra Chinchana a base de papa huayro fresca sancochada, acompañada de la rica sopa seca y 150gr de chicharrón de chancho tierno. Para chuparse los dedos."
+        app:layout_constraintTop_toBottomOf="@+id/textTitle"
+        tools:layout_editor_absoluteX="27dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="341dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:srcCompat="@drawable/ic_carapu" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="299dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:checkedButton="@id/rb_stand"
+        android:layoutDirection="locale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <RadioButton
+            android:id="@+id/rb_stand"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Estandar" />
+
+        <RadioButton
+            android:id="@+id/rb_taypa"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Taypá"
+            tools:layout_editor_absoluteX="-68dp"
+            tools:layout_editor_absoluteY="626dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="57dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="68dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCar"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.239"
+        tools:layout_editor_absoluteX="94dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnAddCar"
+        android:layout_width="356dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#95893E"
+        android:text="Agregar al Carrito"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.709"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="48dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/ic_add"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="563dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="45dp"
+        android:layout_height="52dp"
+        app:srcCompat="@drawable/ic_subtract"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="563dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

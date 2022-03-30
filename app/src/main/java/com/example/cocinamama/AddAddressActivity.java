@@ -6,19 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.cocinamama.ui.home.HomeFragment;
-
-public class LoginActivity extends AppCompatActivity {
+public class AddAddressActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-    }
-
-    public void Login(View view) {
-
-        startActivity(new Intent(this, MenuActivity.class));
+        setContentView(R.layout.activity_add_address);
     }
 
     public void goRegister(View view) {
