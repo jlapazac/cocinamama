@@ -19,12 +19,6 @@
             android:name=".VerPedidosPendientes"
             android:exported="false" />
         <activity
-            android:name=".VerPedidosC"
-            android:exported="false" />
-        <activity
-            android:name=".VerPedidos"
-            android:exported="false" />
-        <activity
             android:name=".ConfirmacionPedido"
             android:exported="false" />
         <activity
