@@ -10,7 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaMama">
         <activity
-            android:name=".MainActivity"
+            android:name=".AddDishOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadPhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
