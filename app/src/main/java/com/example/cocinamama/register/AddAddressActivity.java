@@ -1,4 +1,4 @@
-package com.example.cocinamama;
+package com.example.cocinamama.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class LoginActivity extends AppCompatActivity {
+import com.example.cocinamama.R;
+
+public class AddAddressActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_add_address);
     }
 
     public void goRegister(View view) {

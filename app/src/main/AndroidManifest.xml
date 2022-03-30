@@ -10,25 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaMama">
         <activity
+            android:name=".ProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddDishOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ListMenuActivity"
+            android:name=".register.UploadPhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".UploadPhotoActivity"
+            android:name=".register.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".AddAddressActivity"
+            android:name=".register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WelcomeActivity"
+            android:name=".login.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

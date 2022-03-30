@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView6"
@@ -106,7 +106,7 @@
         android:backgroundTint="#95893E"
         android:text="Iniciar Sesión"
         android:textColor="@color/black"
-        android:onClick="Login"
+        android:onClick="login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />

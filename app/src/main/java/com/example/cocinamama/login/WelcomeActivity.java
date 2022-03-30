@@ -1,10 +1,13 @@
-package com.example.cocinamama;
+package com.example.cocinamama.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.cocinamama.R;
+import com.example.cocinamama.register.RegisterActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 

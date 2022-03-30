@@ -1,10 +1,12 @@
-package com.example.cocinamama;
+package com.example.cocinamama.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.cocinamama.R;
 
 public class UploadPhotoActivity extends AppCompatActivity {
 
