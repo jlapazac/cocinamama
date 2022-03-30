@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaMama">
         <activity
+            android:name=".StartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductActivity"
             android:exported="false" />
         <activity

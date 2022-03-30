@@ -5,20 +5,24 @@
         android:title="Inicio"
         android:icon="@drawable/home"
         />
-
     <item
         android:id="@+id/order"
         android:title="Pedido"
         android:icon="@drawable/order"
         />
     <item
-        android:id="@+id/user"
-        android:title="Usuario"
-        android:icon="@drawable/user"
+        android:id="@+id/cart"
+        android:title="Carrito"
+        android:icon="@drawable/cart"
         />
     <item
-        android:id="@+id/car"
-        android:title="Carrito"
+        android:id="@+id/offer"
+        android:title="Promocion"
+        android:icon="@drawable/offer"
+        />
+    <item
+        android:id="@+id/user"
+        android:title="Usuario"
         android:icon="@drawable/user"
         />
 </menu>
