@@ -22,4 +22,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="iv_order_description">iv_order_description</string>
+    <string name="tv_productname">tv_productname</string>
+    <string name="tv_orderid">tv_orderid</string>
+    <string name="tv_orderstatus">tv_orderstatus</string>
 </resources>

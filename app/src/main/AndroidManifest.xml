@@ -10,37 +10,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaMama">
         <activity
-            android:name=".StartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductActivity"
+            android:name=".usecases.orderdetails.StartActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddDishOrderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".register.UploadPhotoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".register.AddAddressActivity"
-            android:exported="false" />
-        <activity
-            android:name=".register.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".login.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".usecases.cart.AddDishOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.register.UploadPhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.register.AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usecases.login.WelcomeActivity"
+            android:exported="false">
+
         </activity>
     </application>
 

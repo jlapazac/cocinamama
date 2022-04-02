@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_welcome"
-    tools:context=".login.WelcomeActivity">
+    tools:context=".usecases.login.WelcomeActivity">
 
     <Button
         android:id="@+id/btnWelcome"

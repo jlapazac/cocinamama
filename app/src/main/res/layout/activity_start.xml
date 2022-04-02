@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".StartActivity">
+    tools:context=".usecases.orderdetails.StartActivity">
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
