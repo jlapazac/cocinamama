@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usecases.menuFragments.HomeFragment">
+    android:background="@color/white"
+    tools:context=".usecases.homeFragments.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_home" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnPublish1"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginTop="52dp"
@@ -61,7 +62,7 @@
             tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btnPublish2"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginBottom="128dp"
@@ -70,7 +71,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/btnPublish1"
             tools:ignore="SpeakableTextPresentCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

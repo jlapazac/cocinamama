@@ -64,13 +64,14 @@
 
     <Button
         android:id="@+id/btnAddPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="104dp"
         android:backgroundTint="#95893E"
         android:onClick="goRegister"
         android:text="Agregar Foto"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="2dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
