@@ -32,7 +32,14 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View view = inflater.inflate(R.layout.fragment_order, container, false);
+//        Bundle bundle = this.getArguments();
+//        String tst = "no";
+//        if (bundle!=null){
+//            tst = bundle.getString("test");
+//        }
+//        Toast.makeText(view.getContext(), "t: " + tst, Toast.LENGTH_SHORT).show();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_order);
         orderAdapter = new OrderAdapter(orderList, new OrderAdapter.ItemClickListener() {
