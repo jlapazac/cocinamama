@@ -39,6 +39,7 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         final Order order = (Order) orderList.get(position);
 
+        itemViewHolder.id.setText(String.format("P%07d",order.getId()));
         itemViewHolder.status.setText(order.getStatus());
         itemViewHolder.price.setText(order.getPrice());
         itemViewHolder.images.setImageResource(order.getImage());
@@ -58,17 +59,19 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder{
-        public TextView price;
         public ImageView images;
+        public TextView id;
         public TextView status;
+        public TextView price;
         public LinearLayout linearLayout;
 
         ItemViewHolder(View itemView){
             super(itemView);
 
             images = (ImageView) itemView.findViewById(R.id.image_order);
-            price = (TextView) itemView.findViewById(R.id.text_price);
-            status = (TextView) itemView.findViewById(R.id.text_status);
+            id = (TextView) itemView.findViewById(R.id.txtOrder);
+            status = (TextView) itemView.findViewById(R.id.txtStatus);
+            price = (TextView) itemView.findViewById(R.id.txtPrice);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.orderLayout);
         }
     }

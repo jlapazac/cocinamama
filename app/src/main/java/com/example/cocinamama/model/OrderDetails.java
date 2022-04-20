@@ -2,17 +2,19 @@ package com.example.cocinamama.model;
 
 public class OrderDetails {
     public int id;
-    public int imagen;
-    public String nombre;
-    public String desc;
-    public String precio;
+    public int image;
+    public String title;
+    public String typeOrder;
+    public String price;
+    public int amount;
 
-    public OrderDetails(int id, int imagen, String nombre, String desc, String precio) {
+    public OrderDetails(int id, int image, String title, String typeOrder, String price, int amount) {
         this.id = id;
-        this.imagen = imagen;
-        this.nombre = nombre;
-        this.desc = desc;
-        this.precio = precio;
+        this.image = image;
+        this.title = title;
+        this.typeOrder = typeOrder;
+        this.price = price;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -23,35 +25,35 @@ public class OrderDetails {
         this.id = id;
     }
 
-    public int getImagen() {
-        return imagen;
+    public int getImage() {
+        return image;
     }
 
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
+    public void setImage(int image) {
+        this.image = image;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getTypeOrder() {
+        return typeOrder;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setTypeOrder(String typeOrder) {
+        this.typeOrder = typeOrder;
     }
 
-    public String getPrecio() {
-        return precio;
+    public String getPrice() {
+        return price;
     }
 
-    public void setPrecio(String precio) {
-        this.precio = precio;
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

@@ -10,7 +10,7 @@
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
-        android:id="@+id/toplaoup"
+        android:id="@+id/topLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
@@ -18,15 +18,12 @@
         android:orientation="horizontal"
         android:padding="2dp">
 
-        <!--  ListRow Left sied Thumbnail image -->
         <LinearLayout
-            android:id="@+id/thumbnail"
+            android:id="@+id/imageLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dip">
+            android:layout_marginRight="5dp">
 
             <ImageView
                 android:id="@+id/image_order"
@@ -35,19 +32,17 @@
 
         </LinearLayout>
 
-        <!-- Title Of Song-->
         <LinearLayout
             android:id="@+id/orderLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/thumbnail"
+            android:layout_alignTop="@+id/imageLayout"
             android:layout_marginRight="60dp"
-
-            android:layout_toRightOf="@+id/thumbnail"
+            android:layout_toRightOf="@+id/imageLayout"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_price"
+                android:id="@+id/txtOrder"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
@@ -57,12 +52,11 @@
                 android:text="Title"
                 android:textSize="16dip" />
 
-            <!-- Artist Name -->
             <TextView
-                android:id="@+id/text_status"
+                android:id="@+id/txtStatus"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text_price"
+                android:layout_below="@id/txtOrder"
                 android:layout_marginTop="1dip"
                 android:layout_marginRight="50dp"
                 android:ellipsize="marquee"
@@ -72,6 +66,22 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/priceLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S/.1000"
+                />
+
+        </LinearLayout>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

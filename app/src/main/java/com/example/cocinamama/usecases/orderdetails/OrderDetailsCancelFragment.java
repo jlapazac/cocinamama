@@ -14,15 +14,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.cocinamama.R;
-import com.example.cocinamama.databinding.FragmentOrderDetailsCancelBinding;
 import com.example.cocinamama.model.OrderDetails;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailsCancelFragment extends Fragment {
 
-    private FragmentOrderDetailsCancelBinding fragmentOrderDetailsCancelBinding;
     private ListView listView;
     private List<OrderDetails> list;
 
@@ -37,36 +35,14 @@ public class OrderDetailsCancelFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_details_cancel, container, false);
 
-        listView = view.findViewById(R.id.listViewOrderDetails);
-        CustomAdapter adapter = new CustomAdapter(getActivity(), GetData());
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                OrderDetails o = list.get(i);
-                Toast.makeText(getActivity(), o.nombre, Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                findNavController(getView()).navigate(R.id.action_orderDetailsCancelFragment_to_orderFragment);
             }
         });
 
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
-        fragmentOrderDetailsCancelBinding = FragmentOrderDetailsCancelBinding.bind(view);
-
-
-    }
-
-    private List<OrderDetails> GetData() {
-        list = new ArrayList<>();
-        list.add(new OrderDetails(1,R.drawable.shopping, "Arroz con pollo","3x1","S/. 100.00"));
-        list.add(new OrderDetails(1,R.drawable.shopping, "Lomo Saltado","3x1","S/. 200.00"));
-        list.add(new OrderDetails(1,R.drawable.shopping, "Sopa Seca","3x1","S/. 300.00"));
-        list.add(new OrderDetails(1,R.drawable.shopping, "Cau Cau","3x1","S/. 400.00"));
-
-        return list;
     }
 }

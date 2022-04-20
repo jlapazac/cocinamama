@@ -28,4 +28,6 @@
     <string name="tv_orderstatus">tv_orderstatus</string>
 
     <string name="urlOrder">http://apaza.pe:8000/order/</string>
+    <string name="urlOrderDetail">http://apaza.pe:8000/orderdetail/order/</string>
+    <string name="urlOrderState">http://apaza.pe:8000/order/state/</string>
 </resources>

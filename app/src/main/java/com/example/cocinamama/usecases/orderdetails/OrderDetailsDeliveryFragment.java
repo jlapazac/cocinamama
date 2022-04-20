@@ -1,5 +1,7 @@
 package com.example.cocinamama.usecases.orderdetails;
 
+import static androidx.navigation.Navigation.findNavController;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,15 +14,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.cocinamama.R;
-import com.example.cocinamama.databinding.FragmentOrderDetailsDeliveryBinding;
 import com.example.cocinamama.model.OrderDetails;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailsDeliveryFragment extends Fragment {
 
-    private FragmentOrderDetailsDeliveryBinding fragmentOrderDetailsDeliveryBinding;
     private ListView listView;
     private List<OrderDetails> list;
 
@@ -35,35 +36,15 @@ public class OrderDetailsDeliveryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_details_delivery, container, false);
 
-        listView = view.findViewById(R.id.listViewOrderDetails);
-        CustomAdapter adapter = new CustomAdapter(getActivity(), GetData());
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                OrderDetails o = list.get(i);
-                Toast.makeText(getActivity(), o.nombre, Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                findNavController(getView()).navigate(R.id.action_orderDetailsDeliveryFragment_to_orderFragment);
             }
         });
 
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
-        fragmentOrderDetailsDeliveryBinding = FragmentOrderDetailsDeliveryBinding.bind(view);
-
-    }
-
-    private List<OrderDetails> GetData() {
-        list = new ArrayList<>();
-        list.add(new OrderDetails(1,R.drawable.shopping, "Arroz con pollo","3x1","S/. 100.00"));
-        list.add(new OrderDetails(1,R.drawable.shopping, "Lomo Saltado","3x1","S/. 200.00"));
-        list.add(new OrderDetails(1,R.drawable.shopping, "Sopa Seca","3x1","S/. 300.00"));
-        list.add(new OrderDetails(1,R.drawable.shopping, "Cau Cau","3x1","S/. 400.00"));
-
-        return list;
-    }
 }
