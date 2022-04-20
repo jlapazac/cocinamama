@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cocinamama.R;
+import com.example.cocinamama.model.OrderDetails;
 
 import java.util.List;
 

@@ -26,4 +26,6 @@
     <string name="tv_productname">tv_productname</string>
     <string name="tv_orderid">tv_orderid</string>
     <string name="tv_orderstatus">tv_orderstatus</string>
+
+    <string name="urlOrder">http://apaza.pe:8000/order/</string>
 </resources>

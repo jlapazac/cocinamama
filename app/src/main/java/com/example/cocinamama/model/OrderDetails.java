@@ -1,4 +1,4 @@
-package com.example.cocinamama.usecases.orderdetails;
+package com.example.cocinamama.model;
 
 public class OrderDetails {
     public int id;

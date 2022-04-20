@@ -1,4 +1,4 @@
-package com.example.cocinamama.usecases.order;
+package com.example.cocinamama.model;
 
 public class Order {
     public int id;

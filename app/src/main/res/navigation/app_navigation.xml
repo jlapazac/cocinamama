@@ -31,6 +31,18 @@
             <action
                 android:id="@+id/action_orderFragment_to_orderDetailsFragment"
                 app:destination="@id/orderDetailsFragment" />
+            <action
+                android:id="@+id/action_orderFragment_to_orderDetailsCancelFragment"
+                app:destination="@id/orderDetailsCancelFragment" />
+            <action
+                android:id="@+id/action_orderFragment_to_orderDetailsCookFragment"
+                app:destination="@id/orderDetailsCookFragment" />
+            <action
+                android:id="@+id/action_orderFragment_to_orderDetailsDeliveryFragment"
+                app:destination="@id/orderDetailsDeliveryFragment" />
+            <action
+                android:id="@+id/action_orderFragment_to_orderDetailsFinishFragment"
+                app:destination="@id/orderDetailsFinishFragment" />
         </fragment>
         <fragment
             android:id="@+id/orderDetailsFragment"
@@ -39,6 +51,57 @@
             tools:layout="@layout/fragment_order_details" >
             <action
                 android:id="@+id/action_orderDetailsFragment_to_orderFragment"
+                app:destination="@id/orderFragment" />
+            <action
+                android:id="@+id/action_orderDetailsFragment_to_orderDetailsCancelPopupFragment"
+                app:destination="@id/orderDetailsCancelPopupFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/orderDetailsCancelFragment"
+            android:name="com.example.cocinamama.usecases.orderdetails.OrderDetailsCancelFragment"
+            android:label="fragment_order_details_cancel"
+            tools:layout="@layout/fragment_order_details_cancel" >
+            <action
+                android:id="@+id/action_orderDetailsCancelFragment_to_orderFragment"
+                app:destination="@id/orderFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/orderDetailsCookFragment"
+            android:name="com.example.cocinamama.usecases.orderdetails.OrderDetailsCookFragment"
+            android:label="fragment_order_details_cook"
+            tools:layout="@layout/fragment_order_details_cook" >
+            <action
+                android:id="@+id/action_orderDetailsCookFragment_to_orderFragment"
+                app:destination="@id/orderFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/orderDetailsCancelPopupFragment"
+            android:name="com.example.cocinamama.usecases.orderdetails.OrderDetailsCancelPopupFragment"
+            android:label="fragment_order_details_cancel_popup"
+            tools:layout="@layout/fragment_order_details_cancel_popup" >
+            <action
+                android:id="@+id/action_orderDetailsCancelPopupFragment_to_orderDetailsCancelFragment"
+                app:destination="@id/orderDetailsCancelFragment" />
+            <action
+                android:id="@+id/action_orderDetailsCancelPopupFragment_to_orderDetailsFragment"
+                app:destination="@id/orderDetailsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/orderDetailsDeliveryFragment"
+            android:name="com.example.cocinamama.usecases.orderdetails.OrderDetailsDeliveryFragment"
+            android:label="fragment_order_details_delivery"
+            tools:layout="@layout/fragment_order_details_delivery" >
+            <action
+                android:id="@+id/action_orderDetailsDeliveryFragment_to_orderFragment"
+                app:destination="@id/orderFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/orderDetailsFinishFragment"
+            android:name="com.example.cocinamama.usecases.comment.OrderDetailsFinishFragment"
+            android:label="fragment_order_details_finish"
+            tools:layout="@layout/fragment_order_details_finish" >
+            <action
+                android:id="@+id/action_orderDetailsFinishFragment_to_orderFragment"
                 app:destination="@id/orderFragment" />
         </fragment>
     </navigation>

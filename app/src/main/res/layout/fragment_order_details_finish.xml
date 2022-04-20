@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usecases.comment.OrderDetailsFinishFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Pedido Nro. #######"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapView"
+            />
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Llega el 12 del marzo del 2022 entre 12:30 - 12:45"
+            android:textSize="12sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtOrder"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <LinearLayout
+            android:id="@+id/lyStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="InvalidId">
+
+            <ImageView
+                android:id="@+id/statusStart"
+                android:background="@drawable/shape_color_primary"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                app:srcCompat="@drawable/order"
+                app:tint="@color/white" />
+
+            <View
+                android:id="@+id/statusLineCook"
+                android:layout_width="90dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@color/primaryColor" />
+
+            <ImageView
+                android:id="@+id/statusCook"
+                android:background="@drawable/shape_color_primary"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                app:srcCompat="@drawable/cook"
+                app:tint="@color/white" />
+
+            <View
+                android:id="@+id/statusLineDelivery"
+                android:layout_width="90dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@color/primaryColor" />
+
+            <ImageView
+                android:id="@+id/statusDelivery"
+                android:background="@drawable/shape_color_primary"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                app:srcCompat="@drawable/delivery"
+                app:tint="@color/white" />
+
+            <View
+                android:id="@+id/statusLineFinish"
+                android:layout_width="90dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@color/primaryColor" />
+
+            <ImageView
+                android:id="@+id/statusFinish"
+                android:background="@drawable/shape_color_primary"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                app:srcCompat="@drawable/finish"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="El pedido ha sido entregado."
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lyStatus" />
+
+        <View
+            android:id="@+id/lineTopContact"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+
+            android:background="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtComment" />
+
+        <View
+            android:id="@+id/lineBottomContact"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+
+            android:background="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+
+        <TextView
+            android:id="@+id/txtOrderDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Detalle de pedido"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/lineBottomContact"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/txtOrderPriceTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="S/. 1360.00"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/lineBottomContact"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ListView
+            android:id="@+id/listViewOrderDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtOrderDetail"
+            />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:saveEnabled="true"
+            android:numStars="5"
+            android:layout_gravity="bottom|left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="@+id/lineTopContact"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/ibMessage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_color_secondary"
+            android:onClick="sendComment"
+            android:padding="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/comment"
+            app:tint="@color/primaryColor"
+
+            app:layout_constraintTop_toBottomOf="@+id/lineTopContact"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
