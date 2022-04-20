@@ -22,4 +22,7 @@
     <style name="Theme.CocinaMama.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.CocinaMama.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SpinnerTheme" parent="android:Widget.Material.Spinner.Underlined">
+    </style>
 </resources>

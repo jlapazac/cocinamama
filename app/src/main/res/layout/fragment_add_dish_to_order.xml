@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="Carapulcra y Sopa Seca"
+
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30dp"
@@ -24,7 +24,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textDescription"
         android:layout_width="366dp"
         android:layout_height="82dp"
         android:layout_marginTop="20dp"
@@ -36,13 +36,13 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgDishSelect"
         android:layout_width="360dp"
         android:layout_height="185dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription"
         app:srcCompat="@drawable/ic_carapu" />
 
     <RadioGroup
@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/imgDishSelect">
 
         <RadioButton
             android:id="@+id/rb_stand"

@@ -150,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextNameReg"
         android:layout_width="372dp"
         android:layout_height="49dp"
         android:layout_marginTop="192dp"
@@ -170,7 +170,7 @@
         android:layout_marginEnd="52dp"
         android:text="S/.750"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameReg" />
 
     <TextView
         android:id="@+id/textView29"
@@ -181,7 +181,7 @@
         android:textStyle="bold"
         android:text="Direccion de entrega"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameReg" />
 
     <TextView
         android:id="@+id/textView30"
@@ -191,10 +191,10 @@
         android:layout_marginEnd="88dp"
         android:text="Av. General Córdova 123, Miraflores"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameReg" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgDishSelect"
         android:layout_width="131dp"
         android:layout_height="112dp"
         android:layout_marginTop="12dp"
@@ -211,7 +211,7 @@
         android:layout_marginEnd="68dp"
         android:text="Se le ha enviado un correo de confirmación"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgDishSelect" />
 
     <Button
         android:id="@+id/btnPhoto"

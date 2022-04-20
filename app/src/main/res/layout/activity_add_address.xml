@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:background="@color/white"
     tools:context=".usecases.register.AddAddressActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical">
 
         <ImageView
@@ -17,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             app:srcCompat="@drawable/ic_logo" />
-
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
@@ -28,32 +31,26 @@
             android:textSize="30dp"
             android:textColor="@color/black"/>
 
-        <EditText
-            android:id="@+id/editTextCity"
+        <Spinner
+            android:id="@+id/spCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Ciudad"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/editTextProvince"
+        <Spinner
+            android:id="@+id/spProvince"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Provincia"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/editTextDistrict"
+        <Spinner
+            android:id="@+id/spDistric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Distrito"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/editTextAddress"
@@ -72,10 +69,9 @@
 
         <Button
             android:id="@+id/btnAddAddress"
-            android:layout_width="380dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:backgroundTint="#95893E"
-            android:layout_marginLeft="15dp"
             android:onClick="goRegister"
             android:text="Agregar Dirección" />
     </LinearLayout>
