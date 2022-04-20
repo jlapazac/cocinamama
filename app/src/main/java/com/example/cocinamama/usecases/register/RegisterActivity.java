@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,6 +19,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cocinamama.R;
 import com.example.cocinamama.usecases.login.LoginActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +66,17 @@ public class RegisterActivity extends AppCompatActivity {
         Log.i("======>", userLastName);
         Log.i("======>", email);
 
+        final JSONObject body = new JSONObject();
+        try {
+            body.put("name", userName + " " + userLastName);
+            body.put("email", email);
+            body.put("password", password);
+            body.put("phone", phone);
+            body.put("photo", photo);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
             @Override
@@ -70,7 +85,6 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(RegisterActivity.this,"Se registró el usuario correctamente", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
-                //startActivity(new Intent(this, LoginActivity.class));
             }
         },
                 new Response.ErrorListener() {
@@ -81,20 +95,18 @@ public class RegisterActivity extends AppCompatActivity {
                 }
         ){
             @Override
-            protected Map<String, String> getParams() {
-                Log.i("======>", "Entré al Map");
-                Map<String, String> params = new HashMap();
-                params.put("name", userName);
-                params.put("email", email);
-                params.put("password", password);
-                params.put("phone", phone);
-                params.put("photo", photo);
-                return params;
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
             }
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return body.toString().getBytes();
+            }
+
         };
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }
