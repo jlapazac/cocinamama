@@ -19,6 +19,7 @@ import com.example.cocinamama.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    Bundle bundle = new Bundle();
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -40,7 +41,8 @@ public class HomeFragment extends Fragment {
             Log.i("======>", "llegue aca");
             Log.i("======>", view.toString());
             Log.i("======>", view1.toString());
-            findNavController(view).navigate(R.id.action_homeFragment_to_listDishFragment);
+            bundle.putString("id","1");
+            findNavController(view).navigate(R.id.action_homeFragment_to_listDishFragment,bundle);
         });
 
     }

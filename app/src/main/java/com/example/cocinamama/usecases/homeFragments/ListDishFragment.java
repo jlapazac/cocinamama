@@ -42,6 +42,7 @@ public class ListDishFragment extends Fragment {
     //private RecyclerView recyclerView;
     //private dishAdapter dishAdapter;
     //private Boolean flag;
+    Bundle bundle;
 
     public ListDishFragment() {
         // Required empty public constructor
@@ -79,7 +80,8 @@ public class ListDishFragment extends Fragment {
         //RecyclerView.Adapter<dishAdapter.ViewHolder> dishAdapter = new dishAdapter(listDishes);
         //recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         //recyclerView.setAdapter(dishAdapter);
-        String url = "http://3.141.134.92:8000/publicationdetail/publication/";
+        bundle = getArguments();
+        String url = "http://3.141.134.92:8000/publicationdetail/publication/" + bundle.getString("id");
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 
             @Override
@@ -115,7 +117,7 @@ public class ListDishFragment extends Fragment {
                     }
                 }
         );
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
     }
 
