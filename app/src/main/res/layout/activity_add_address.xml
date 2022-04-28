@@ -61,11 +61,19 @@
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
-        <com.google.android.gms.maps.MapView
+        <!--<com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="184dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck" />-->
+        <fragment
+            android:id="@+id/mapView"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="220dp"
+            />
+
 
         <Button
             android:id="@+id/btnAddAddress"

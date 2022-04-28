@@ -39,8 +39,6 @@ public class HomeFragment extends Fragment {
         Log.i("======>", "llegue al onViewCreated");
         binding.btnPublish1.setOnClickListener(view1 -> {
             Log.i("======>", "llegue aca");
-            Log.i("======>", view.toString());
-            Log.i("======>", view1.toString());
             bundle.putString("id","1");
             findNavController(view).navigate(R.id.action_homeFragment_to_listDishFragment,bundle);
         });

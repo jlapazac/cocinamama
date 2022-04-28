@@ -75,7 +75,7 @@ public class AddDishToOrderFragment extends Fragment {
         Number price = pDish.getPrice();
         if (rb_taypa.isChecked()){
             price = price.doubleValue() * 1.25;
-            typeorder = "tapya";
+            typeorder = "taypa";
         } else {
             typeorder = "estandar";
         }
