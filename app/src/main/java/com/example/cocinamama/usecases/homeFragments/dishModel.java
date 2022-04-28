@@ -4,19 +4,25 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class dishModel implements Parcelable {
+    private Integer publicationdetail_id;
     private String title;
     private String description;
+    private Number price;
     private String photo;
 
-    public dishModel(String title, String description, String photo) {
+    public dishModel(Integer publicationdetail_id, String title, String description, Number price,String photo) {
+        this.publicationdetail_id = publicationdetail_id;
         this.title = title;
         this.description = description;
+        this.price = price;
         this.photo = photo;
     }
 
     protected dishModel(Parcel parcel) {
+        publicationdetail_id = parcel.readInt();
         title = parcel.readString();
         description = parcel.readString();
+        price = parcel.readDouble();
         photo = parcel.readString();
     }
 
@@ -32,6 +38,8 @@ public class dishModel implements Parcelable {
         }
     };
 
+    public Integer getId() {return  publicationdetail_id;}
+
     public String getTitle() {
         return title;
     }
@@ -39,6 +47,8 @@ public class dishModel implements Parcelable {
     public String getDescription() {
         return description;
     }
+
+    public  Number getPrice(){return  price;}
 
     public String getPhoto() {
         return photo;
@@ -51,8 +61,10 @@ public class dishModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.publicationdetail_id);
         parcel.writeString(this.title);
         parcel.writeString(this.description);
+        parcel.writeDouble((Double) this.price);
         parcel.writeString(this.photo);
     }
 }

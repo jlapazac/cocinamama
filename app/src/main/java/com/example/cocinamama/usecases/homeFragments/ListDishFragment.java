@@ -93,11 +93,12 @@ public class ListDishFragment extends Fragment {
                     List<dishModel> listDish = new ArrayList<>();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
-
+                        Integer publicationdetail_id = object.getInt("id");
                         String title = object.getString("title");
                         String description = object.getString("description");
+                        Number price = object.getDouble("price");
                         String photo = object.getString("photo");
-                        listDish.add(new dishModel(title,description,photo));
+                        listDish.add(new dishModel(publicationdetail_id,title,description,price,photo));
                     }
 
                     RecyclerView recyclerView = view.findViewById(R.id.recyclerViewDish);
@@ -122,11 +123,11 @@ public class ListDishFragment extends Fragment {
     }
 
 
-    private List<dishModel> getData(View v){
-        List<dishModel> listDishes = new ArrayList<>();
+    //private List<dishModel> getData(View v){
+      //  List<dishModel> listDishes = new ArrayList<>();
         //listDishes.add(new dishModel("Carapulcra y Sopa Seca","La especialidad de la casa. Carapulcra Chinchana a base de papa huayro fresca sancochada, acompañada de la rica sopa seca y 150gr de chicharrón de chancho tierno. Para chuparse los dedos."));
         //listDishes.add(new dishModel("Pachamanca","Deliciosa Pachamanca a la olla con 300 gr de Panceta de Cerdo, papa yungay, camote jonathan, choclo de dientes tiernos y su incomparable queso ahumado. Combinación de sabores adictivos."));
         //listDishes.add(new dishModel("Lomo Saltado","Incomparable plato típico peruano preparado con Lomo Fino, cebolladas y tomates frescos en su punto de crujiente y una cama de papás nativas fritas. Majestuoso por donde se le mire."));
-        return listDishes;
-    }
+        //return listDishes;
+    //}
 }
