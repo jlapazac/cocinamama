@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cocinamama.R;
 import com.example.cocinamama.model.OrderDetails;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -95,6 +103,34 @@ public class OrderDetailsFragment extends Fragment {
         txtOrder.setText(id);
         txtOrderPriceTotal.setText(price);
 
+        // Crear Mapa
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);
+
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.setTrafficEnabled(true);
+
+                googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-12.04592, -77.030565))
+                        .title("Centro de Lima")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+                googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-12.044956, -77.029831))
+                        .title("Palacio de Gobierno"));
+
+                googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-12.046661, -77.029544))
+                        .title("Catedral"));
+
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.04592, -77.030565), 15));
+
+            }
+        });
+
+
         listView = view.findViewById(R.id.listViewOrderDetails);
         orderDetailsAdapter = new OrderDetailsAdapter(getContext(), orderDetailsList);
 
@@ -103,6 +139,8 @@ public class OrderDetailsFragment extends Fragment {
 
         return view;
     }
+
+
 
     public void httpGET(String url){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
