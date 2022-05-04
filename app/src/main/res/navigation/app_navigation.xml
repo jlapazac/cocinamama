@@ -10,13 +10,30 @@
         app:startDestination="@id/homeFragment">
         <fragment
             android:id="@+id/homeFragment"
-            android:name="com.example.cocinamama.usecases.menuFragments.HomeFragment"
+            android:name="com.example.cocinamama.usecases.homeFragments.HomeFragment"
             android:label="fragment_home"
             tools:layout="@layout/fragment_home">
             <action
                 android:id="@+id/action_homeFragment_to_orderFragment"
                 app:destination="@id/ordernavgraph" />
+            <action
+                android:id="@+id/action_homeFragment_to_listDishFragment"
+                app:destination="@id/listDishFragment" />
         </fragment>
+        <fragment
+            android:id="@+id/listDishFragment"
+            android:name="com.example.cocinamama.usecases.homeFragments.ListDishFragment"
+            android:label="fragment_list_dish"
+            tools:layout="@layout/fragment_list_dish" >
+            <action
+                android:id="@+id/action_listDishFragment_to_addDishToOrderFragment"
+                app:destination="@id/addDishToOrderFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/addDishToOrderFragment"
+            android:name="com.example.cocinamama.usecases.homeFragments.AddDishToOrderFragment"
+            android:label="fragment_add_dish_to_order"
+            tools:layout="@layout/fragment_add_dish_to_order" />
     </navigation>
     <navigation android:id="@+id/ordernavgraph"
         app:startDestination="@id/orderFragment">

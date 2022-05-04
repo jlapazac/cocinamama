@@ -276,5 +276,4 @@ public class OrderDetailsFragment extends Fragment {
         //
         ad.show();
     }
-
 }
