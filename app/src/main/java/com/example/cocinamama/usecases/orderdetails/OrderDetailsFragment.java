@@ -56,7 +56,11 @@ public class OrderDetailsFragment extends Fragment {
 
     public static final String TAG = "===========>";
     RequestQueue QUEUE;
-    String URLHTTP;
+
+    // Maps
+    Double latitude;
+    Double longitude;
+    String address;
 
     Bundle dataOrder;
     private List<OrderDetails> orderDetailsList = new ArrayList<>();
@@ -69,8 +73,7 @@ public class OrderDetailsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_order_details, container, false);
 
@@ -87,6 +90,12 @@ public class OrderDetailsFragment extends Fragment {
         TextView txtOrder = view.findViewById(R.id.txtOrder);
         TextView txtOrderPriceTotal = view.findViewById(R.id.txtOrderPriceTotal);
 
+        String id = String.format("P%07d",dataOrder.getInt("id"));
+        String price = String.format("S/.%s",dataOrder.getString("price"));
+
+        txtOrder.setText(id);
+        txtOrderPriceTotal.setText(price);
+
         // Cancelar
         Button btnCancel = view.findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -96,51 +105,16 @@ public class OrderDetailsFragment extends Fragment {
             }
         });
 
-
-        String id = String.format("P%07d",dataOrder.getInt("id"));
-        String price = String.format("S/.%s",dataOrder.getString("price"));
-
-        txtOrder.setText(id);
-        txtOrderPriceTotal.setText(price);
-
-        // Crear Mapa
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);
-
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-                googleMap.getUiSettings().setZoomControlsEnabled(true);
-                googleMap.setTrafficEnabled(true);
-
-                googleMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(-12.04592, -77.030565))
-                        .title("Centro de Lima")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
-                googleMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(-12.044956, -77.029831))
-                        .title("Palacio de Gobierno"));
-
-                googleMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(-12.046661, -77.029544))
-                        .title("Catedral"));
-
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.04592, -77.030565), 15));
-
-            }
-        });
-
-
         listView = view.findViewById(R.id.listViewOrderDetails);
         orderDetailsAdapter = new OrderDetailsAdapter(getContext(), orderDetailsList);
+        String urlOrderDetail = getResources().getString(R.string.urlOrderDetail).concat(Integer.toString(dataOrder.getInt("id")));
+        httpGET(urlOrderDetail);
 
-        URLHTTP = getResources().getString(R.string.urlOrderDetail).concat(Integer.toString(dataOrder.getInt("id")));
-        httpGET(URLHTTP);
+        String urlAddress = getResources().getString(R.string.urlAddress).concat(Integer.toString(dataOrder.getInt("address_id")));
+        getAddress(urlAddress);
 
         return view;
     }
-
-
 
     public void httpGET(String url){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -148,6 +122,25 @@ public class OrderDetailsFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         parsingData(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG,error.toString());
+            }
+        }
+        );
+        QUEUE = Volley.newRequestQueue(getContext());
+        QUEUE.add(stringRequest);
+    }
+
+    public void getAddress(String url){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i(TAG,response);
+                        parsingDataAddress(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -217,6 +210,38 @@ public class OrderDetailsFragment extends Fragment {
         }
     }
 
+    public void parsingDataAddress(String json){
+        try{
+            Log.i(TAG,json);
+            JSONObject data = new JSONObject(json);
+
+            latitude = data.getDouble("latitude");
+            longitude = data.getDouble("longitude");
+            address = data.getString("address");
+
+            // Crear Mapa
+            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);
+
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(@NonNull GoogleMap googleMap) {
+                    googleMap.getUiSettings().setZoomControlsEnabled(true);
+                    googleMap.setTrafficEnabled(true);
+
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(latitude, longitude))
+                            .title(address));
+
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
+
+                }
+            });
+
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
+
     private void displayAlertDialog() {
 
         Context context = getContext();
@@ -233,7 +258,7 @@ public class OrderDetailsFragment extends Fragment {
                 buttonYes,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int arg1) {
-                        String url = getResources().getString(R.string.urlOrderState).concat(Integer.toString(dataOrder.getInt("id")));
+                        String url = getResources().getString(R.string.urlOrder).concat(Integer.toString(dataOrder.getInt("id")));
                         Log.d(TAG,url);
                         httpPUT(url);
                         findNavController(getView()).navigate(R.id.action_orderDetailsFragment_to_orderDetailsCancelFragment);

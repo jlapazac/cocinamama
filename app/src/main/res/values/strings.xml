@@ -27,7 +27,8 @@
     <string name="tv_orderid">tv_orderid</string>
     <string name="tv_orderstatus">tv_orderstatus</string>
 
-    <string name="urlOrder">http://apaza.pe:8000/order/</string>
-    <string name="urlOrderDetail">http://apaza.pe:8000/orderdetail/order/</string>
-    <string name="urlOrderState">http://apaza.pe:8000/order/state/</string>
+    <string name="urlOrder">https://upc.apaza.pe/order/</string>
+    <string name="urlAddress">https://upc.apaza.pe/address/</string>
+    <string name="urlOrderByUser">https://upc.apaza.pe/order/user/</string>
+    <string name="urlOrderDetail">https://upc.apaza.pe/orderdetail/order/</string>
 </resources>

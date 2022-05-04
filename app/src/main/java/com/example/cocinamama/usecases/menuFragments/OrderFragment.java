@@ -38,7 +38,6 @@ public class OrderFragment extends Fragment {
 
     public static final String TAG = "===========>";
     RequestQueue QUEUE;
-    String URLHTTP;
 
     Bundle dataOrder = new Bundle();
     private List<Order> orderList = new ArrayList<>();
@@ -57,8 +56,9 @@ public class OrderFragment extends Fragment {
 
         orderAdapter = new OrderAdapter(getContext(), orderList, this);
         QUEUE = Volley.newRequestQueue(getContext());
-        URLHTTP = getResources().getString(R.string.urlOrder);
-        httpGET(URLHTTP);
+        String urlHttps = getResources().getString(R.string.urlOrderByUser).concat("1");
+        Log.i(TAG,urlHttps);
+        httpGET(urlHttps);
 
         return view;
     }
@@ -92,6 +92,7 @@ public class OrderFragment extends Fragment {
                 int image = 0;
                 String status = inside.getString("state");
                 String price = inside.getString("totalamount");
+                dataOrder.putInt("address_id",inside.getInt("address_id"));
 
                 switch (status){
                     case "order": image = R.drawable.order;
