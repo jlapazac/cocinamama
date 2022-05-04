@@ -23,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -259,9 +258,8 @@ public class OrderDetailsFragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int arg1) {
                         String url = getResources().getString(R.string.urlOrder).concat(Integer.toString(dataOrder.getInt("id")));
-                        Log.d(TAG,url);
                         httpPUT(url);
-                        findNavController(getView()).navigate(R.id.action_orderDetailsFragment_to_orderDetailsCancelFragment);
+                        findNavController(getView()).navigate(R.id.action_orderDetailsFragment_to_orderFragment);
                     }
                 }
         );

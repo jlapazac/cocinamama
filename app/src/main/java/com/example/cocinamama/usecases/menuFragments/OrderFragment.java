@@ -135,6 +135,5 @@ public class OrderFragment extends Fragment {
             case "cancel": findNavController(getView()).navigate(R.id.action_orderFragment_to_orderDetailsCancelFragment, dataOrder);
                 break;
         }
-        Toast.makeText(getContext(), data.getStatus(), Toast.LENGTH_SHORT).show();
     }
 }
