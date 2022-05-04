@@ -85,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.i("tag",response);
                 Log.i("======>", "Entré al onResponse");
                 Toast toast = Toast.makeText(RegisterActivity.this,"Se registró el usuario correctamente", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);

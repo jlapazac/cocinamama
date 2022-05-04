@@ -62,20 +62,16 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //login = new String(response);
-                        //Log.i("======>", login);
-                        Log.i("======>", response.toString());
-                        if (response != "false"){
-                            Log.i("======>", "Entré al onResponse");
+                        Boolean loguser = Boolean.parseBoolean(response);
+                        if(loguser){
                             Toast toast = Toast.makeText(LoginActivity.this,"Bienvenido", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
-                            go = new Integer(1);
+                            success();
                         }else {
                             Toast toast = Toast.makeText(LoginActivity.this,"El usuario o clave son incorrectos", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
-                            go = new Integer(2);
                         }
                     }
                 },
@@ -106,10 +102,14 @@ public class LoginActivity extends AppCompatActivity {
         //Log.i("======>", "GO es igual a" + go.toString());
         /*if (go != 2){
             Log.i("======>", "GO es igual a" + go.toString());*/
-        startActivity(new Intent(this, MainActivity.class));
+
         /*}
         else {
             Log.i("======>", "GO es igual a 2");
         }*/
+    }
+
+    public void success(){
+        startActivity(new Intent(this,MainActivity.class));
     }
 }
