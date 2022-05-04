@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.cocinamama.MainActivity;
 import com.example.cocinamama.R;
+import com.example.cocinamama.databinding.FragmentHomeBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -43,6 +44,12 @@ public class AddAddressActivity extends AppCompatActivity {
     SupportMapFragment mapFragment;
     double latitude;
     double longitude;
+    //Bundle bundle = new Bundle();
+    String txtCity;
+    String txtProvince;
+    String txtDistrict;
+    String txtAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,23 +97,42 @@ public class AddAddressActivity extends AppCompatActivity {
         ArrayAdapter<String> adaptadorCity = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, city);
         adaptadorCity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner comboCity = (Spinner) findViewById(R.id.spCity); comboCity.setAdapter(adaptadorCity);
-        //comboCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-        //public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+        comboCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
         //        Toast.makeText(AddAddressActivity.this, "Seleccionado: " + city[position], Toast.LENGTH_LONG).show();
-        //   }
-        //  public void onNothingSelected(AdapterView<?> parent) {
+            txtCity = city[position].toString();
+           }
+          public void onNothingSelected(AdapterView<?> parent) {
         //      Toast.makeText(AddAddressActivity.this, "No ha seleccionado", Toast.LENGTH_LONG).show();
-        //  }
-        //});
+          }
+        });
         final String[] province = new String[] { "Seleccione una provincia","Lima" };
-        ArrayAdapter<String> adaptadorProvince = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, city);
+        ArrayAdapter<String> adaptadorProvince = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, province);
         adaptadorProvince.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner comboProvince = (Spinner) findViewById(R.id.spProvince); comboProvince.setAdapter(adaptadorProvince);
+        comboProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+                //        Toast.makeText(AddAddressActivity.this, "Seleccionado: " + city[position], Toast.LENGTH_LONG).show();
+                txtProvince = province[position].toString();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                //      Toast.makeText(AddAddressActivity.this, "No ha seleccionado", Toast.LENGTH_LONG).show();
+            }
+        });
 
         final String[] distric = new String[] { "Seleccione un distrito","Barranco","Chorrillos","Miraflores","San Borja", "Santiago de Surco" };
         ArrayAdapter<String> adaptadorDistric = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, distric);
         adaptadorDistric.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner comboDistric = (Spinner) findViewById(R.id.spDistric); comboDistric.setAdapter(adaptadorDistric);
+        comboDistric.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+                //        Toast.makeText(AddAddressActivity.this, "Seleccionado: " + city[position], Toast.LENGTH_LONG).show();
+                txtDistrict = distric[position].toString();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                //      Toast.makeText(AddAddressActivity.this, "No ha seleccionado", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void locationStart() {
@@ -131,7 +157,15 @@ public class AddAddressActivity extends AppCompatActivity {
 
 
     public void goRegister(View view) {
-        startActivity(new Intent(this, RegisterActivity.class));
+        TextView textViewAddress = AddAddressActivity.this.findViewById(R.id.editTextAddress);
+        txtAddress = (String) textViewAddress.getText();
+        Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("city",txtCity);
+        intent.putExtra("province",txtProvince);
+        intent.putExtra("district",txtDistrict);
+        intent.putExtra("address",txtAddress);
+        //startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(intent);
     }
 
     public void setLocation(Location location) {

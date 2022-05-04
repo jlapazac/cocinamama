@@ -1,9 +1,13 @@
 package com.example.cocinamama.usecases.register;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -27,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
         String password = txtPassword.getText().toString();
         String phone = txtPhone.getText().toString();
         String photo = "photo";
-        //String url = "http://3.141.134.92:8000/user/";
-        String url = "http://apaza.pe:8000/user/";
+
+        String url = "https://upc.apaza.pe/user/";
         Log.i("======>", "Llegué al método registrar");
         Log.i("======>", userName);
         Log.i("======>", userLastName);
@@ -107,6 +111,60 @@ public class RegisterActivity extends AppCompatActivity {
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+        saveAddress();
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    private void saveAddress() {
+        String city = getIntent().getStringExtra("city");
+        String province = getIntent().getStringExtra("province");
+        String district = getIntent().getStringExtra("district");
+        String address = getIntent().getStringExtra("address");
+
+        String url = "http://apaza.pe:8000/address/";
+
+        final JSONObject body = new JSONObject();
+        try {
+            body.put("city", city);
+            body.put("province", province);
+            body.put("district", district);
+            body.put("address", address);
+            body.put("latitude", 1111111);
+            body.put("longitude", 11111111);
+            body.put("user_id", 1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("======>", "Entré al onResponse");
+                        //Toast toast = Toast.makeText(RegisterActivity.this,"Se registró el usuario correctamente", Toast.LENGTH_LONG);
+                        //toast.setGravity(Gravity.CENTER, 0, 0);
+                        //toast.show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("======>", error.toString());
+                    }
+                }
+        ){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return body.toString().getBytes();
+            }
+
+        };
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

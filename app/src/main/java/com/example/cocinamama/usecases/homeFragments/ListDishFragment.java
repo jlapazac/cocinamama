@@ -81,7 +81,7 @@ public class ListDishFragment extends Fragment {
         //recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         //recyclerView.setAdapter(dishAdapter);
         bundle = getArguments();
-        String url = "http://3.141.134.92:8000/publicationdetail/publication/" + bundle.getString("id");
+        String url = "https://upc.apaza.pe/publicationdetail/publication/" + bundle.getString("id");
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 
             @Override

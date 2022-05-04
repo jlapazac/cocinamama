@@ -25,8 +25,8 @@
 
     <TextView
         android:id="@+id/textDescription"
-        android:layout_width="366dp"
-        android:layout_height="82dp"
+        android:layout_width="360dp"
+        android:layout_height="95dp"
         android:layout_marginTop="20dp"
         android:text="La especialidad de la casa. Carapulcra Chinchana a base de papa huayro fresca sancochada, acompañada de la rica sopa seca y 150gr de chicharrón de chancho tierno. Para chuparse los dedos."
         android:textSize="15dp"
