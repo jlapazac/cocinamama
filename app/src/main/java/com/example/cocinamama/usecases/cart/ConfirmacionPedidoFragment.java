@@ -33,8 +33,8 @@ public class ConfirmacionPedidoFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView tvTotal,tvDireccion;
-    private String direccion, totalPedido;
+    private TextView tvTotal,tvDireccion, tvPedidoDetalle;
+    private String direccion, totalPedido, pedidoId;
     private ArrayList<ProductoItem> productosList = new ArrayList<>();
 
     // Recycler
@@ -86,6 +86,7 @@ public class ConfirmacionPedidoFragment extends Fragment {
         totalPedido = getArguments().getString("totalPedido");
         productosList = (ArrayList<ProductoItem>) getArguments().getSerializable("key");
         direccion = getArguments().getString("direccion");
+        pedidoId = getArguments().getString("pedidoId");
 
         recyclerView =view.findViewById(R.id.lv_pedidos);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -96,8 +97,13 @@ public class ConfirmacionPedidoFragment extends Fragment {
 
         tvTotal = view.findViewById(R.id.textView28);
         tvTotal.setText(totalPedido);
+
         tvDireccion = view.findViewById(R.id.textView30);
         tvDireccion.setText(direccion);
+
+        tvPedidoDetalle = view.findViewById(R.id.textView17);
+        String pedidoDetalle = "Su Pedido No. " + pedidoId + " ha sido registrado de manera satisfactoria";
+        tvPedidoDetalle.setText(pedidoDetalle);
 
 
         return  view;

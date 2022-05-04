@@ -1,7 +1,11 @@
 package com.example.cocinamama.usecases.cart;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -40,11 +44,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatosRegistroFragment extends Fragment {
+public class DatosRegistroFragment extends Fragment{
 
     private static final String TAG = "DatosRegistroFragment";
 
@@ -63,11 +70,16 @@ public class DatosRegistroFragment extends Fragment {
     private RadioGroup rGroupAddDireccion, rGroupTipoPago;
     private RadioButton radioDireccionSi, radioDireccionNo, radioBCP, radioYAPE;
     private EditText etNewDireccion;
+
+    // Pedido data
     private String tempDireccion;
     private String tipoPago;
     private int userId = 1;
+    private String pedidoId;
     private String totalPedido;
+    private String encodedImage;
     private ArrayList<ProductoItem> productosList = new ArrayList<>();
+    private double globalLat, globalLong;
 
     public DatosRegistroFragment() {
         // Required empty public constructor
@@ -100,6 +112,8 @@ public class DatosRegistroFragment extends Fragment {
 
         // get data
         totalPedido = getArguments().getString("totalPedido");
+        userId = getArguments().getInt("userId");
+        encodedImage = getArguments().getString("encodedImage");
         productosList = (ArrayList<ProductoItem>) getArguments().getSerializable("key");
 
         // init layout
@@ -117,6 +131,9 @@ public class DatosRegistroFragment extends Fragment {
 
                 if (checkedId==radioDireccionSi.getId()){
                     etNewDireccion.setVisibility(View.VISIBLE);
+                    // open map to get lat y long
+                    Intent i = new Intent(view.getContext(), GetLocActivity.class);
+                    startActivityForResult(i, 1);
                 } else {
                     etNewDireccion.setVisibility(View.GONE);
                     txtvdireccion.setText(tempDireccion);
@@ -155,6 +172,7 @@ public class DatosRegistroFragment extends Fragment {
         loadDireccion(view);
         showConfirmacionPedido(view);
         showCargarComprobante(view);
+        setPedidoId(view);
 
         return view;
     }
@@ -163,57 +181,39 @@ public class DatosRegistroFragment extends Fragment {
         // Instantiate the RequestQueue.
         Log.e(TAG, "loadDireccion: Init Volley" );
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String url ="http://apaza.pe:8000/address/1";
+        String url ="https://upc.apaza.pe/address/" + userId;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // process your response here
-                        Log.e(TAG, "onResponse: " + response );
+        JsonObjectRequest objectRequest = new JsonObjectRequest(url, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG, "onResponse JSON: " + response );
+                try {
+                    String data = String.valueOf(response.get("address"));
+                    tempDireccion = data;
+                    txtvdireccion.setText(data);
 
-                    }
-                }, new Response.ErrorListener() {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //perform operation here after getting error
-                Log.e(TAG, "onErrorResponse: " + error.getMessage() );
+                Log.e(TAG, "onResponse JSON error : " + error );
             }
         });
-        queue.add(stringRequest);
 
-        //JsonArrayRequest
-        JsonArrayRequest bannerReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject obj = response.getJSONObject(i);
-                                String data = String.valueOf(obj.get("address"));
-                                tempDireccion = data;
-                                txtvdireccion.setText(data);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        });
-        queue.add(bannerReq);
+        queue.add(objectRequest);
 
     }
 
     private void sendDataToServer(View view){
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
 
-        final String URL = "http://apaza.pe:8000/order/";
+//        String URL = "http://apaza.pe:8000/order/";
+        String URL = "https://upc.apaza.pe/order/";
+
         HashMap<String, Object> params = new HashMap<String, Object>();
 
         params.put("user_id", userId);
@@ -223,7 +223,11 @@ public class DatosRegistroFragment extends Fragment {
         params.put("payment", tipoPago);
         params.put("state", "string");
         params.put("descriptionstate", "string");
-        params.put("photo", "string");
+        params.put("photo", encodedImage);
+        params.put("comment", "string");
+        params.put("star", 0);
+
+        Log.e(TAG, "sendDataToServer: "+ params );
 
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -234,21 +238,23 @@ public class DatosRegistroFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
+                VolleyLog.e("Error send Order: ", error.getMessage());
             }
         });
 
-
-        final String URL1 = "http://apaza.pe:8000/address/1";
+        // actualizo la direccion del usuario.
+        final String URL1 = "https://upc.apaza.pe/address/" + userId;
         HashMap<String, Object> paramsDireccion = new HashMap<String, Object>();
 
         paramsDireccion.put("city", "String");
         paramsDireccion.put("province", "String");
         paramsDireccion.put("district", "String");
         paramsDireccion.put("address", txtvdireccion.getText().toString());
-        paramsDireccion.put("latitude", 0.0);
-        paramsDireccion.put("longitude", 0.0);
+        paramsDireccion.put("latitude", round(globalLat,3));
+        paramsDireccion.put("longitude", round(globalLong,3));
         paramsDireccion.put("user_id", userId);
+
+        Log.e(TAG, "mapa location: " + paramsDireccion );
 
         JsonObjectRequest req1 = new JsonObjectRequest(Request.Method.PUT, URL1, new JSONObject(paramsDireccion),
                 new Response.Listener<JSONObject>() {
@@ -269,6 +275,60 @@ public class DatosRegistroFragment extends Fragment {
 
     }
 
+    private void setPedidoId(View view){
+
+        Log.e(TAG, "loadDireccion: Init Volley getting pedido Id" );
+        RequestQueue queue = Volley.newRequestQueue(view.getContext());
+        String url ="https://upc.apaza.pe/order/";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // Process the JSON
+                        ArrayList<Integer> listPedidos = new ArrayList<>();
+
+                        try{
+                            for(int i=0;i<response.length();i++){
+
+                                JSONObject student = response.getJSONObject(i);
+                                int id = student.getInt("id");
+                                listPedidos.add(id);
+                            }
+                            int max = Collections.max(listPedidos) + 1;
+
+                            if (max < 10){
+                                pedidoId = "P000000" + max;
+                            } else if (max<100){
+                                pedidoId = "P00000" + max;
+                            } else if (max<1000){
+                                pedidoId = "P0000" + max;
+                            }
+//                            pedidoId = "P00000" + max;
+
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                            Log.e(TAG, "onResponse ERROR: " + e.getMessage() );
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+                        Log.e(TAG, "Error on getting id: " );
+                    }
+                }
+        );
+        queue.add(jsonArrayRequest);
+
+    }
+
+    // Ui Methods
+
     private void showConfirmacionPedido(View view) {
         btnregistrar=view.findViewById(R.id.btnregistrar);
         btnregistrar.setOnClickListener(new View.OnClickListener() {
@@ -285,11 +345,16 @@ public class DatosRegistroFragment extends Fragment {
                     bundle.putSerializable("key", productosList);
                     bundle.putString("totalPedido", totalPedido);
                     bundle.putString("direccion", txtvdireccion.getText().toString());
+                    bundle.putString("encodedImage", "noImage");
+                    bundle.putString("pedidoId", pedidoId);
+
                     confirmacionPedidoFragment.setArguments(bundle);
 
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.navHostContainer, confirmacionPedidoFragment);
+
                     fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.setReorderingAllowed(true);
                     fragmentTransaction.commit();
                 }
             }
@@ -303,20 +368,53 @@ public class DatosRegistroFragment extends Fragment {
             public void onClick(View view) {
 
                 CargarComprobanteFragment cargarComprobanteFragment = new CargarComprobanteFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("totalPedido", String.valueOf(totalPedido));
+                bundle.putSerializable("key", productosList);
+                cargarComprobanteFragment.setArguments(bundle);
+                bundle.putInt("userId", userId);
+
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.navHostContainer, cargarComprobanteFragment);
+
                 fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.setReorderingAllowed(true);
                 fragmentTransaction.commit();
             }
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    //todo cargar direccion desde volley
-    //todo fix los 2 radiogroups and set data, primer RG abro EditText para asignar nueva direccion
-    //todo volley envio nueva direccion
-    //todo volley envio pedido
+        // Para obtener ubicacion
 
-    // siguiente fragmento cargar la informacion
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+
+                String completeLocation = data.getStringExtra("userDireccion");
+                String completelat = data.getStringExtra("latitudeGlobal");
+                String completelong = data.getStringExtra("longitudeGlobal");
+
+                globalLat = Double.parseDouble(completelat);
+                globalLong = Double.parseDouble(completelong);
+                txtvdireccion.setText(completeLocation);
+
+            } else {
+                Toast.makeText(getContext(), "Error al obtener la direccion.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
 
 }

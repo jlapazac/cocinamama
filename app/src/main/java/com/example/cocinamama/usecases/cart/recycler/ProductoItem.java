@@ -1,6 +1,8 @@
 package com.example.cocinamama.usecases.cart.recycler;
 
-public class ProductoItem {
+import java.io.Serializable;
+
+public class ProductoItem implements Serializable {
     private String desc;
     private int precio;
 

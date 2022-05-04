@@ -34,5 +34,14 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="Seleccionar" />
+
+        <Button
+            android:id="@+id/btnAceptarImg"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Aceptar" />
+
     </LinearLayout>
 </FrameLayout>

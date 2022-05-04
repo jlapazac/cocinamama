@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cocinamama.R;
 import com.example.cocinamama.usecases.cart.DatosRegistroFragment;
@@ -25,7 +26,6 @@ public class CartFragment extends Fragment {
 
     private TextView tv_pedidos;
     private Button btnSiguiente;
-
 
     private String pedidos[]={"Carapulcra y Sopa Seca S/.240" , "ssssss S/3.55"};
 
@@ -45,6 +45,10 @@ public class CartFragment extends Fragment {
     private ArrayList<ProductoItem> productosList = new ArrayList<>();
     private TextView totalPedido;
     private int intTotalPedido = 0;
+
+    // User Id
+    private int userId;
+
 
     public CartFragment() {
         // Required empty public constructor
@@ -82,14 +86,15 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         initProductos();
-//        ArrayAdapter <String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.list_pedidos_, pedidos);
+        getUserId();
+
         productoAdapter = new ProductoAdapter(productosList, view.getContext());
         recyclerView.setAdapter(productoAdapter);
         return view;
 
     }
 
-    private void initProductos() {
+    private void initProductos() { //todo obtener los productos
         productosList.add(new ProductoItem("Carapulcra con Sopa Seca", 50));
         productosList.add(new ProductoItem("Aji de Gallina", 95));
         productosList.add(new ProductoItem("Pachamanca", 65));
@@ -104,7 +109,10 @@ public class CartFragment extends Fragment {
         String total = "S/. " + totalProd;
         totalPedido.setText(total);
 
+    }
 
+    private void getUserId() { //todo asignar esta variable al id Usuario
+        userId = 1;
     }
 
     private void showDatosRegistro(View view) {
@@ -113,19 +121,30 @@ public class CartFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatosRegistroFragment datosRegistroFragment = new DatosRegistroFragment();
 
-                Bundle bundle = new Bundle();
-                bundle.putString("totalPedido", String.valueOf(intTotalPedido));
-                bundle.putSerializable("key", productosList);
+                if (userId==0){
+                    Toast.makeText(view.getContext(),"No se ha cargado el id del usuario.", Toast.LENGTH_SHORT).show();
+                } else {
+                    DatosRegistroFragment datosRegistroFragment = new DatosRegistroFragment();
 
-                datosRegistroFragment.setArguments(bundle);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("totalPedido", String.valueOf(intTotalPedido));
+                    bundle.putSerializable("key", productosList);
+                    bundle.putString("encodedImage", "noImage");
+                    bundle.putInt("userId", userId);
 
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    datosRegistroFragment.setArguments(bundle);
 
-                fragmentTransaction.replace(R.id.navHostContainer, datosRegistroFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+                    fragmentTransaction.replace(R.id.navHostContainer, datosRegistroFragment);
+//                String backStateName = datosRegistroFragment.getClass().getName();
+//                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.setReorderingAllowed(true);
+                    fragmentTransaction.commit();
+                }
+
+
             }
         });
     }
