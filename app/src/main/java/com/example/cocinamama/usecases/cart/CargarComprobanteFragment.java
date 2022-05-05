@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+/*
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
@@ -29,6 +30,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+ */
 import com.example.cocinamama.R;
 import com.example.cocinamama.usecases.cart.recycler.ProductoItem;
 
@@ -226,8 +228,8 @@ class AsyncSendPedidos extends AsyncTask<Void,View, Void> {
                 MY_BUCKET="s3-user-cocinamama",
                 OBJECT_KEY="keyforthisuniqueobjectasdads";
 
-        AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
-        AmazonS3 s3 = new AmazonS3Client(credentials);
+        //AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
+        //AmazonS3 s3 = new AmazonS3Client(credentials);
 
 //        s3.createBucket(MY_BUCKET);
 
@@ -235,12 +237,12 @@ class AsyncSendPedidos extends AsyncTask<Void,View, Void> {
 //        s3.setRegion(Region.getRegion(Regions.AP_SOUTHEAST_1));
 //        s3.setEndpoint("https://865999662799.signin.aws.amazon.com/console");
 //
-        TransferUtility transferUtility = TransferUtility.builder().s3Client(s3).context(view.getContext()).build();
-        TransferNetworkLossHandler.getInstance(view.getContext());
+        //TransferUtility transferUtility = TransferUtility.builder().s3Client(s3).context(view.getContext()).build();
+        //TransferNetworkLossHandler.getInstance(view.getContext());
 
-        TransferObserver observer = transferUtility.upload(MY_BUCKET,OBJECT_KEY,file1);
+        //TransferObserver observer = transferUtility.upload(MY_BUCKET,OBJECT_KEY,file1);
 
-        observer.setTransferListener(new TransferListener() {
+        /*observer.setTransferListener(new TransferListener() {
             @Override
             public void onStateChanged(int id, TransferState state) {
                 // do something
@@ -264,7 +266,7 @@ class AsyncSendPedidos extends AsyncTask<Void,View, Void> {
             }
 
         });
-
+        */
         return null;
     }
 
