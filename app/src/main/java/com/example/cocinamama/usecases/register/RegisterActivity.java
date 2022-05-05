@@ -85,8 +85,16 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("tag",response);
-                Log.i("======>", "Entré al onResponse");
+                try {
+                    JSONObject data = new JSONObject(response);
+
+                    int idUser = data.getInt("id");
+                    saveAddress(idUser);
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+
+                Log.i("======>", response);
                 Toast toast = Toast.makeText(RegisterActivity.this,"Se registró el usuario correctamente", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
@@ -112,27 +120,28 @@ public class RegisterActivity extends AppCompatActivity {
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-        saveAddress();
+
         startActivity(new Intent(this, LoginActivity.class));
     }
 
-    private void saveAddress() {
+    private void saveAddress(int idUser) {
         String city = getIntent().getStringExtra("city");
         String province = getIntent().getStringExtra("province");
         String district = getIntent().getStringExtra("district");
         String address = getIntent().getStringExtra("address");
 
-        String url = "http://apaza.pe:8000/address/";
-
+        String url = "https://upc.apaza.pe/address/";
+        Log.i("============>",Integer.toString(idUser));
         final JSONObject body = new JSONObject();
         try {
-            body.put("city", city);
-            body.put("province", province);
-            body.put("district", district);
-            body.put("address", address);
-            body.put("latitude", 1111111);
-            body.put("longitude", 11111111);
-            body.put("user_id", 1);
+            body.put("city", "city");
+            body.put("province", "province");
+            body.put("district", "district");
+            body.put("address", "address");
+            body.put("latitude", 0);
+            body.put("longitude", 0);
+            body.put("user_id", idUser);
+            Log.i("===========>",body.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
